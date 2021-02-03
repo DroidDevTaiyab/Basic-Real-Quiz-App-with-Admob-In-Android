@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Real Quiz</string>
+
+
+    <!--    Testing id-->
+
+    <string name="Bannerid">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="Appid">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="InterstitialAd">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="Native_Advance_Ad">ca-app-pub-3940256099942544/2247696110</string>
+</resources>
