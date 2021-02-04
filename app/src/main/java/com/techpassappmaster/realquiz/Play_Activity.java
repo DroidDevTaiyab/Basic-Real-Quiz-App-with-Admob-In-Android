@@ -187,7 +187,6 @@ public class Play_Activity extends AppCompatActivity {
             rb4.setText(opt[qIndex * 4 + 3]);
 
         } else {
-
             score = correct;
             Intent in = new Intent(getApplicationContext(), Result_Activity.class);
             in.putExtra("isKey", true);

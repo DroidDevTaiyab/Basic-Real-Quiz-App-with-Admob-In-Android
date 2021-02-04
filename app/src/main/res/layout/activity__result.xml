@@ -21,7 +21,7 @@
 
 
         <ImageView
-            android:id="@+id/wrong_emg"
+            android:id="@+id/emoji_ReactionImg"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@drawable/angry_img" />
