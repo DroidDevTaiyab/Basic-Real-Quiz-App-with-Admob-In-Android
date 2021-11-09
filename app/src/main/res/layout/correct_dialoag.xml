@@ -32,7 +32,7 @@
         android:paddingEnd="16dp"
         android:textColor="@android:color/white"
         android:layout_marginBottom="50dp"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/correct_ok"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -46,6 +47,7 @@ public class Main_Activity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -60,7 +62,7 @@ public class Main_Activity extends AppCompatActivity {
                 break;
 
             case R.id.privacy_policy:
-                Toast.makeText(this, "pri", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Privacy Policy", Toast.LENGTH_SHORT).show();
                 break;
 
         }

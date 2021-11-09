@@ -32,28 +32,28 @@ import java.util.concurrent.TimeUnit;
 
 public class Play_Activity extends AppCompatActivity {
 
-    private TextView tv_score, tv_noOfQues,tvTime,tv_question;
+    private TextView tv_score, tv_noOfQues, tvTime, tv_question;
     private Button next_button;
     private RadioGroup radio_g;
     private RadioButton rb1, rb2, rb3, rb4;
 
-//    timer
+    //    timer
     private CountDownTimer countDownTimer;
     public static final long COUNT_DOWN_IN_MILLIS = 30000;
-    private static final long countDownInterval = 1000;
-    private static long timeLeft_milliseconds;
+    private static final long COUNT_DOWN_INTERVAL = 1000;
+    private long timeLeft_milliseconds;
     private ColorStateList default_color;
 
-//    ads
+    //    ads
     private FrameLayout adContainerView;
     private AdView adView;
 
-//    ques & and
+    //    ques & and
     public static int score = 0, correct = 0, wrong = 0, skip = 0;
     int qIndex = 0;
     int update_que_no = 1;
 
-//    String array for Ques, ans, options
+    //    String array for Ques, ans, options
     String[] questions =
             {
                     "Q.1. If a computer has more than one processor then it is known as?",
@@ -135,8 +135,7 @@ public class Play_Activity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    private void initializeViews()
-    {
+    private void initializeViews() {
         tv_score = findViewById(R.id.score);
         tv_noOfQues = findViewById(R.id.tv_noOfQues);
 
@@ -204,13 +203,15 @@ public class Play_Activity extends AppCompatActivity {
         if (radio_g.getCheckedRadioButtonId() == -1) {
             skip++;
             timeOver_Dialog();
-        } else {
-            RadioButton check_selected_radiobtn = findViewById(radio_g.getCheckedRadioButtonId());
-            String chceck_ansStr = check_selected_radiobtn.getText().toString();
+        }
+        else {
 
-            if (chceck_ansStr.equals(answers[qIndex])) {
+            RadioButton checkedRadioButton = findViewById(radio_g.getCheckedRadioButtonId());
+            String checkAnswer = checkedRadioButton.getText().toString();
+
+            if (checkAnswer.equals(answers[qIndex])) {
                 correct++;
-                tv_score.setText("Your Score :-" + correct);
+                tv_score.setText("Score :-" + correct);
                 correct_Dialog();
                 countDownTimer.cancel();
             } else {
@@ -225,13 +226,27 @@ public class Play_Activity extends AppCompatActivity {
     }
 
     private void startCountDown() {
+//        String timeFormat = String.format(Locale.getDefault(), "Time : %02d", second);
+//        int second = (int) (timeLeftInMilis / 1000) % 60;
 
-        countDownTimer = new CountDownTimer(timeLeft_milliseconds, countDownInterval) {
+        countDownTimer = new CountDownTimer(timeLeft_milliseconds, COUNT_DOWN_INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
 
                 timeLeft_milliseconds = millisUntilFinished;
-                updateCountDownTxt();
+
+                int second = (int) TimeUnit.MILLISECONDS.toSeconds(timeLeft_milliseconds);
+
+//              %02d  format the integer with 2 digit
+                String timeFormat = String.format(Locale.getDefault(), "Time : %02d", second);
+
+                tvTime.setText(timeFormat);
+
+                if (timeLeft_milliseconds < 10000) {
+                    tvTime.setTextColor(Color.RED);
+                } else {
+                    tvTime.setTextColor(default_color);
+                }
 
             }
 
@@ -243,25 +258,6 @@ public class Play_Activity extends AppCompatActivity {
 //                updateCountDownTxt();
             }
         }.start();
-
-    }
-
-    private void updateCountDownTxt() {
-//        int second = (int) (timeLeftInMilis / 1000) % 60;
-        int second = (int) TimeUnit.MILLISECONDS.toSeconds(timeLeft_milliseconds);
-
-//        String timeFormat = String.format(Locale.getDefault(), "Time : %02d", second);
-
-//        %02d  format the integer with 2 digit
-        String timeFormat = String.format(Locale.getDefault(), "Time : %02d", second);
-
-        tvTime.setText(timeFormat);
-
-        if (timeLeft_milliseconds < 10000) {
-            tvTime.setTextColor(Color.RED);
-        } else {
-            tvTime.setTextColor(default_color);
-        }
 
     }
 
@@ -341,10 +337,10 @@ public class Play_Activity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("SetTextI18n")
     public void correct_Dialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Play_Activity.this);
-        View view;
-        view = LayoutInflater.from(Play_Activity.this).inflate(R.layout.correct_dialoag, null);
+        View view = LayoutInflater.from(Play_Activity.this).inflate(R.layout.correct_dialoag, null);
         builder.setView(view);
 
         Button button = view.findViewById(R.id.correct_ok);
@@ -359,8 +355,8 @@ public class Play_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                timeLeft_milliseconds = COUNT_DOWN_IN_MILLIS;
                 startCountDown();
+                timeLeft_milliseconds = COUNT_DOWN_IN_MILLIS;
                 alertDialog.dismiss();
             }
         });
