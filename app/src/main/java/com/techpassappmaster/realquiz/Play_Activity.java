@@ -300,6 +300,7 @@ public class Play_Activity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    @SuppressLint("MissingPermission")
     private void loadBanner() {
         adView = new AdView(this);
         adView.setAdUnitId(getResources().getString(R.string.Bannerid));
