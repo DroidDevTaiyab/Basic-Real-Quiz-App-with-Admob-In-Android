@@ -103,10 +103,7 @@ public class Play_Activity extends AppCompatActivity {
         initializeViews();
 
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
+        MobileAds.initialize(this, initializationStatus -> {
         });
 
         adContainerView = findViewById(R.id.ad_view_container_ques);
@@ -117,7 +114,7 @@ public class Play_Activity extends AppCompatActivity {
             }
         });
 
-
+//        TODO < snkjfsjf fnskfnksn  ifjfjsifj jfsjdifj>
         next_button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override

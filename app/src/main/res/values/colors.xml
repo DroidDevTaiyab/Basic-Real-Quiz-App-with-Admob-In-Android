@@ -5,4 +5,6 @@
     <color name="colorAccent">#FE7500</color>
     <color name="bg_color">#eee</color>
 
+    <color name="my_black_color">#F31100</color>
+
 </resources>

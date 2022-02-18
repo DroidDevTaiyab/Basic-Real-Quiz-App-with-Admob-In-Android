@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="128dp"
         android:fontFamily="sans-serif"
-        android:text="Loading...."
+        android:text="@string/my_new_string"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="20sp"

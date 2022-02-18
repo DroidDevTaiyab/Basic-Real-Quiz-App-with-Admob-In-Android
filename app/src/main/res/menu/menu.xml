@@ -16,7 +16,7 @@
 
     <item
        android:id="@+id/more_app"
-        android:title="More Us"
+        android:title="More Apps"
         app:showAsAction="never"/>
 
     <item
